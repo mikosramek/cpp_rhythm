@@ -13,12 +13,14 @@ DEBUG_FOLDER = ./builds/debug/
 ASSET_FOLDER = resources
 LIBRARIES = -lsfml-graphics -lsfml-window -lsfml-system
 
+CPP_FILES = $(TARGET).cpp Note.cpp
+
 debug:
 	@make debug-build
 	@make debug-run
 debug-build:
 	@echo "-- Building Debug --"
-	$(CC) $(DEBUG_FLAGS) -o $(DEBUG_FOLDER)$(TARGET)-debug $(TARGET).cpp $(LIBRARIES)
+	$(CC) $(DEBUG_FLAGS) -o $(DEBUG_FOLDER)$(TARGET)-debug $(CPP_FILES) $(LIBRARIES)
 	@echo "-- Copying Resources --"
 	cp -r ./$(ASSET_FOLDER) $(DEBUG_FOLDER)$(ASSET_FOLDER)
 debug-run:
