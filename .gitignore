@@ -2,3 +2,4 @@
 /builds/release/**
 !**/.gitkeep
 **/.DS_Store
+.vscode

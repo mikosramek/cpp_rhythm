@@ -1,19 +1,25 @@
 #include <iostream>
 #include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 int main() {
-    std::cout << "Hello World" << std::endl;
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Rhythm");
 
-    sf::Window window(sf::VideoMode(800, 600), "Rhythm");
+    sf::CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Green);
 
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event))
         {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) {
                 window.close();
+            }
         }
+
+        window.clear();
+        window.draw(shape);
+        window.display();
     }
     
     return 0;
