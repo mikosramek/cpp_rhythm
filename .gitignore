@@ -1,0 +1,4 @@
+/builds/debug/**
+/builds/release/**
+!**/.gitkeep
+**/.DS_Store
