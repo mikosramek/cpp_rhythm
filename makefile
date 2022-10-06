@@ -11,13 +11,14 @@ TARGET = main
 RELEASE_FOLDER = ./builds/release/
 DEBUG_FOLDER = ./builds/debug/
 ASSET_FOLDER = resources
+LIBRARIES = -lsfml-graphics -lsfml-window -lsfml-system
 
 debug:
 	@make debug-build
 	@make debug-run
 debug-build:
 	@echo "-- Building Debug --"
-	$(CC) $(DEBUG_FLAGS) -o $(DEBUG_FOLDER)$(TARGET)-debug $(TARGET).cpp
+	$(CC) $(DEBUG_FLAGS) -o $(DEBUG_FOLDER)$(TARGET)-debug $(TARGET).cpp $(LIBRARIES)
 	@echo "-- Copying Resources --"
 	cp -r ./$(ASSET_FOLDER) $(DEBUG_FOLDER)$(ASSET_FOLDER)
 debug-run:
@@ -29,7 +30,7 @@ release:
 	@make release-run
 release-build:
 	@echo "-- Building Release --"
-	$(CC) $(RELEASE_FLAGS) -o $(RELEASE_FOLDER)$(TARGET) $(TARGET).cpp
+	$(CC) $(RELEASE_FLAGS) -o $(RELEASE_FOLDER)$(TARGET) $(TARGET).cpp $(LIBRARIES)
 	@echo "-- Copying Resources --"
 	cp -r ./$(ASSET_FOLDER) $(RELEASE_FOLDER)$(ASSET_FOLDER)
 release-run:
