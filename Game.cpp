@@ -28,14 +28,17 @@ Game::Game(const std::string& l_title):
     m_playerSprite.setPosition(WINDOW_SIZE_X * 0.1, 1080 * 0.06);
     m_playerSprite.setScale(0.5f, 0.5f);
 
-    // for (int i = 0; i < 10; i++) {
-    //     m_notes.push_back(Note(
-    //         sf::Vector2f(WINDOW_SIZE_X - NOTE_SIZE + i * 75, 108 * i + 50),
-    //         NOTE_SIZE,
-    //         0.1f,
-    //         sf::Color::Red
-    //     ));
-    // }
+    if (!m_noteTexture.loadFromFile("assets/images/notes.png")) { /* error */ }
+
+    for (int i = 0; i < 10; i++) {
+        m_notes.push_back(Note(
+            sf::Vector2f(WINDOW_SIZE_X - NOTE_SIZE + i * 75 - 600, 108 * i + 50),
+            NOTE_SIZE,
+            0,
+            sf::Color::Red,
+            &m_noteTexture
+        ));
+    }
 }
 
 Game::~Game() {
@@ -55,6 +58,10 @@ void Game::Render() {
     m_window.Draw(m_backgroundSprite);
     m_window.Draw(m_playerSprite);
 
+     for (int i = 0; i < m_notes.size(); i++) {
+        m_notes[i].Render(*m_window.GetRenderWindow());
+     }
+
     m_window.EndDraw();
 }
 
@@ -63,4 +70,8 @@ void Game::Tick() {
 
     int y = sin(m_clock.getElapsedTime().asSeconds() * 2) * 25 + 100;
     m_playerSprite.setPosition(m_playerSprite.getPosition().x, m_backgroundSprite.getPosition().y + y);
+
+    for (int i = 0; i < m_notes.size(); i++) {
+        m_notes[i].Tick();
+     }
 }

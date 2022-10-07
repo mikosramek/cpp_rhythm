@@ -29,6 +29,8 @@ private:
 	sf::Texture m_backgroundTexture;
 	sf::Sprite m_backgroundSprite;
 
+    sf::Texture m_noteTexture;
+
     sf::Texture m_playerTexture;
     sf::Sprite m_playerSprite;
 };
