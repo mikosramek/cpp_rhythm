@@ -4,10 +4,11 @@
 
 int NOTE_SIZE = 50;
 int WINDOW_SIZE_X = 1920;
+int WINDOW_SIZE_Y = 1080;
 
 Game::Game(const std::string& l_title):
-    m_window(l_title, sf::Vector2u(WINDOW_SIZE_X, 1080)),
-    m_dataReader("assets/config.txt")
+    m_window(l_title, sf::Vector2u(WINDOW_SIZE_X, WINDOW_SIZE_Y)),
+    m_bar(sf::Vector2f(WINDOW_SIZE_X * 0.35, 450), sf::Vector2f(250, WINDOW_SIZE_Y - 600))
 {
     m_elapsed = 0.0f;
     m_clock.restart();
@@ -15,18 +16,12 @@ Game::Game(const std::string& l_title):
     if (!m_backgroundTexture.loadFromFile("assets/images/bg.png")) { /* error */ }
     m_backgroundSprite.setTexture(m_backgroundTexture);
 
-    Lines dataLines = m_dataReader.GetLines();
-    for (int index = 0; index < dataLines.size(); index += 1) {
-        std::string line = dataLines[index];
-        if (!line.empty()) {
-            std::cout << line << std::endl;
-        }
-    }
-
     if (!m_playerTexture.loadFromFile("assets/images/eye.png")) { /* error */ }
     m_playerSprite.setTexture(m_playerTexture);
-    m_playerSprite.setPosition(WINDOW_SIZE_X * 0.1, 1080 * 0.06);
-    m_playerSprite.setScale(0.5f, 0.5f);
+    m_playerYPo = WINDOW_SIZE_Y * 0.1;
+    m_playerSprite.setPosition(WINDOW_SIZE_X * 0.08, m_playerYPo);
+    float playerScale = 0.35f;
+    m_playerSprite.setScale(playerScale, playerScale);
 
     if (!m_noteTexture.loadFromFile("assets/images/notes.png")) { /* error */ }
 
@@ -56,11 +51,13 @@ void Game::Render() {
     m_window.BeginDraw();
 
     m_window.Draw(m_backgroundSprite);
-    m_window.Draw(m_playerSprite);
 
-     for (int i = 0; i < m_notes.size(); i++) {
+    m_bar.Render(*m_window.GetRenderWindow());
+
+    for (int i = 0; i < m_notes.size(); i++) {
         m_notes[i].Render(*m_window.GetRenderWindow());
-     }
+    }
+    m_window.Draw(m_playerSprite);
 
     m_window.EndDraw();
 }
@@ -69,7 +66,7 @@ void Game::Tick() {
     sf::Event event = m_window.Tick();
 
     int y = sin(m_clock.getElapsedTime().asSeconds() * 2) * 25 + 100;
-    m_playerSprite.setPosition(m_playerSprite.getPosition().x, m_backgroundSprite.getPosition().y + y);
+    m_playerSprite.setPosition(m_playerSprite.getPosition().x, m_playerYPo + y);
 
     for (int i = 0; i < m_notes.size(); i++) {
         m_notes[i].Tick();

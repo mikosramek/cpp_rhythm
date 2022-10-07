@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Note.h"
 #include "DataReader.h"
+#include "NoteBar.h"
 
 using Notes = std::vector<Note>;
 
@@ -24,8 +25,6 @@ private:
 	sf::Clock m_clock;
 	float m_elapsed;
 
-	DataReader m_dataReader;
-
 	sf::Texture m_backgroundTexture;
 	sf::Sprite m_backgroundSprite;
 
@@ -33,4 +32,7 @@ private:
 
     sf::Texture m_playerTexture;
     sf::Sprite m_playerSprite;
+    float m_playerYPo;
+
+    NoteBar m_bar;
 };

@@ -52,8 +52,23 @@ sf::Event& Window::Tick() {
 		if (event.type == sf::Event::Closed) {
 			m_isDone = true;
 		}
-		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F5) {
-			ToggleFullscreen();
+		else if (event.type == sf::Event::Resized) {
+			Destroy();
+			m_windowSize = sf::Vector2u(event.size.width, event.size.height);
+			Create();
+		}
+		else if (event.type == sf::Event::KeyPressed) {
+			switch(event.key.code) {
+				case sf::Keyboard::C:
+				case sf::Keyboard::Escape:
+					m_isDone = true;
+					break;
+				case sf::Keyboard::F5:
+					ToggleFullscreen();
+					break;
+				default:
+					break;
+			}
 		}
 	}
 	return event;
