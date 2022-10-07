@@ -1,4 +1,4 @@
-CC = clang++
+CC = g++ -std=c++17
 
 # compiler flags:
 #  -g     - this flag adds debugging information to the executable file
@@ -10,10 +10,12 @@ RELEASE_FLAGS = -Wall
 TARGET = main
 RELEASE_FOLDER = ./builds/release/
 DEBUG_FOLDER = ./builds/debug/
-ASSET_FOLDER = resources
-LIBRARIES = -lsfml-graphics -lsfml-window -lsfml-system
+ASSET_FOLDER = assets
+LIBRARIES = -Iinclude -I/usr/local/include -L/usr/local/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
-CPP_FILES = $(TARGET).cpp Note.cpp
+# -lsfml-graphics -lsfml-window -lsfml-system
+
+CPP_FILES = $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp
 
 debug:
 	@make debug-build
@@ -22,7 +24,7 @@ debug-build:
 	@echo "-- Building Debug --"
 	$(CC) $(DEBUG_FLAGS) -o $(DEBUG_FOLDER)$(TARGET)-debug $(CPP_FILES) $(LIBRARIES)
 	@echo "-- Copying Resources --"
-	cp -r ./$(ASSET_FOLDER) $(DEBUG_FOLDER)$(ASSET_FOLDER)
+	cp -r ./$(ASSET_FOLDER) $(DEBUG_FOLDER)
 debug-run:
 	@echo "-- Running Debug --"
 	$(DEBUG_FOLDER)$(TARGET)-debug
@@ -32,9 +34,9 @@ release:
 	@make release-run
 release-build:
 	@echo "-- Building Release --"
-	$(CC) $(RELEASE_FLAGS) -o $(RELEASE_FOLDER)$(TARGET) $(TARGET).cpp $(LIBRARIES)
+	$(CC) $(RELEASE_FLAGS) -o $(RELEASE_FOLDER)$(TARGET) $(CPP_FILES) $(LIBRARIES)
 	@echo "-- Copying Resources --"
-	cp -r ./$(ASSET_FOLDER) $(RELEASE_FOLDER)$(ASSET_FOLDER)
+	cp -r ./$(ASSET_FOLDER) $(RELEASE_FOLDER)
 release-run:
 	@echo "-- Running Release --"
 	$(RELEASE_FOLDER)$(TARGET)
