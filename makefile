@@ -15,7 +15,7 @@ LIBRARIES = -Iinclude -I/usr/local/include -L/usr/local/lib -lsfml-audio -lsfml-
 
 # -lsfml-graphics -lsfml-window -lsfml-system
 
-CPP_FILES = $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp NoteBar.cpp
+CPP_FILES = $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp NoteBar.cpp Config.cpp
 
 debug:
 	@make debug-build

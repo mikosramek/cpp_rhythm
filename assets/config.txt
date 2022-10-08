@@ -1,1 +1,2 @@
-25
+title:Rhythm
+startingHealth:50
