@@ -1,2 +1,1 @@
-title:Rhythm
-startingHealth:50
+difficulty:easy

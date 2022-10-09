@@ -1,10 +1,11 @@
-#include <iostream>
 #include "Game.h"
 #include "Config.h"
+#include "GlobalSettings.h"
 
 int main() {
     Config config;
-    Game game(config.GetValue("title"));
+    GlobalSettings settings;
+    Game game(settings.GetValue("title"));
 
     while (!game.GetWindow()->IsDone()) {
         game.Tick();

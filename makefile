@@ -15,9 +15,11 @@ LIBRARIES = -Iinclude -I/usr/local/include -L/usr/local/lib -lsfml-audio -lsfml-
 
 # -lsfml-graphics -lsfml-window -lsfml-system
 
-CPP_FILES = $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp NoteBar.cpp Config.cpp
+CPP_FILES = $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp NoteBar.cpp Config.cpp GlobalSettings.cpp
 
 debug:
+	@make clean
+	@make settings-debug
 	@make debug-build
 	@make debug-run
 debug-build:
@@ -30,6 +32,8 @@ debug-run:
 	$(DEBUG_FOLDER)$(TARGET)-debug
 
 release:
+	@make clean
+	@make settings-release
 	@make release-build
 	@make release-run
 release-build:
@@ -41,10 +45,18 @@ release-run:
 	@echo "-- Running Release --"
 	$(RELEASE_FOLDER)$(TARGET)
 
+settings-debug:
+	cd SettingCompiler && node SettingsCompiler.js debug
+
+settings-release:
+	cd SettingCompiler && node SettingsCompiler.js release
+
 clean:
 	@echo "-- Cleaning Builds --"
 	@rm -r -f $(DEBUG_FOLDER)*
 	@echo "- Removed Debug"
 	@rm -r -f $(RELEASE_FOLDER)*
 	@echo "- Removed Release"
+	@rm -r -f GlobalSettings.cpp
+	@echo "- Removed Compiled Settings"
 	@echo "-- Finished Cleaning --"

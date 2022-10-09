@@ -4,8 +4,7 @@ Config::Config():
     m_dataReader("assets/config.txt")
 {
     // key, default value
-    m_map.insert(std::pair<std::string, std::string>("startingHealth", "0"));
-    m_map.insert(std::pair<std::string, std::string>("title", "-"));
+    m_map.insert(std::pair<std::string, std::string>("difficulty", "normal"));
 
     Lines dataLines = m_dataReader.GetLines();
     for (int index = 0; index < dataLines.size(); index += 1) {
