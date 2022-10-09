@@ -13,7 +13,7 @@ Game::Game(const std::string& l_title):
     m_elapsed = 0.0f;
     m_clock.restart();
 
-    if (!m_backgroundTexture.loadFromFile("assets/images/bg.png")) { /* error */ }
+    if (!m_backgroundTexture.loadFromFile("assets/images/environment/castle.png")) { /* error */ }
     m_backgroundSprite.setTexture(m_backgroundTexture);
 
     if (!m_playerTexture.loadFromFile("assets/images/eye.png")) { /* error */ }
@@ -23,7 +23,7 @@ Game::Game(const std::string& l_title):
     float playerScale = 0.35f;
     m_playerSprite.setScale(playerScale, playerScale);
 
-    if (!m_noteTexture.loadFromFile("assets/images/notes.png")) { /* error */ }
+    if (!m_noteTexture.loadFromFile("assets/images/ui/notes.png")) { /* error */ }
 
     for (int i = 0; i < 10; i++) {
         m_notes.push_back(Note(
