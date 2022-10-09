@@ -8,7 +8,7 @@ public:
     NoteBar();
     ~NoteBar();
 
-    sf::RectangleShape GetBar();
+    sf::RectangleShape* GetBar();
     void Render(sf::RenderWindow& l_window);
 private:
     sf::RectangleShape m_rect;

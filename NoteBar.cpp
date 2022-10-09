@@ -9,8 +9,8 @@ NoteBar::NoteBar(sf::Vector2f l_position, sf::Vector2f l_size) {
     m_rect.setFillColor(sf::Color(60, 175, 60, 128));
 }
 
-sf::RectangleShape NoteBar::GetBar() {
-    return m_rect;
+sf::RectangleShape* NoteBar::GetBar() {
+    return &m_rect;
 }
 
 void NoteBar::Render(sf::RenderWindow& l_window) {

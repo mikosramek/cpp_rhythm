@@ -24,12 +24,11 @@ Game::Game(const std::string& l_title):
     m_playerSprite.setScale(playerScale, playerScale);
 
     if (!m_noteTexture.loadFromFile("assets/images/ui/notes.png")) { /* error */ }
-
     for (int i = 0; i < 10; i++) {
         m_notes.push_back(Note(
             sf::Vector2f(WINDOW_SIZE_X - NOTE_SIZE + i * 75 - 600, 108 * i + 50),
             NOTE_SIZE,
-            0,
+            0.1f,
             sf::Color::Red,
             &m_noteTexture
         ));
@@ -70,5 +69,8 @@ void Game::Tick() {
 
     for (int i = 0; i < m_notes.size(); i++) {
         m_notes[i].Tick();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_notes[i].isInBar(*m_bar.GetBar())) {
+            m_notes[i].Reset();
+        }
      }
 }

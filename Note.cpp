@@ -41,11 +41,18 @@ void Note::Tick() {
     m_sprite.setPosition(m_position);
 }
 
-bool Note::isInBar(sf::RectangleShape bar) {
-    return false;
+bool Note::isInBar(sf::RectangleShape& bar) {
+    sf::Vector2f barPos = bar.getPosition();
+    float leftBound = barPos.x;
+    float rightBound = barPos.x + bar.getSize().x;
+    return m_position.x > leftBound && m_position.x < rightBound;
 }
 
 void Note::Render(sf::RenderWindow& l_window) {
     l_window.draw(m_shape);
     l_window.draw(m_sprite);
+}
+
+void Note::Reset() {
+    m_position.x += 10;
 }
