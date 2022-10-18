@@ -41,6 +41,8 @@ const createSequences = (sequences) => {
 
     const targetFolder = path.resolve(__dirname, '../..', 'world', 'sequences');
 
+    const includes = [];
+
     for (let i = 0; i < sequences.length; i += 1) {
         const { meta, tempo, notes, musicFileName } = sequences[i];
         const { name } = meta;
@@ -69,7 +71,11 @@ const createSequences = (sequences) => {
 
         process.stdout.cursorTo(0);
         process.stdout.write(`Compiling ${name} sequence ✓\n`);
+        
+        includes.push(`#include "sequences/${className}.h"`);
     }
+    console.log("Update Sequencer.h with:")
+    console.log(includes.join('\n'));
 }
 
 compile();

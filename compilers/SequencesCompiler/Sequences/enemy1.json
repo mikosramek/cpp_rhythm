@@ -1,0 +1,17 @@
+{
+    "meta": {
+        "name": "enemy1"
+    },
+    "tempo": 4,
+    "musicFileName": "castle_enemy_1.ogg",
+    "notes": [
+        {
+            "row": 4,
+            "length": 0.5
+        },
+        {
+            "row": 1,
+            "length": 0.5
+        }
+    ]
+}
