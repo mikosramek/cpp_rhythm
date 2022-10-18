@@ -15,7 +15,7 @@ LIBRARIES = -Iinclude -I/usr/local/include -L/usr/local/lib -lsfml-audio -lsfml-
 
 # -lsfml-graphics -lsfml-window -lsfml-system
 
-CPP_FILES = $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp NoteBar.cpp Config.cpp GlobalSettings.cpp
+CPP_FILES = $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp NoteBar.cpp Config.cpp GlobalSettings.cpp ./utils/MusicClip.cpp
 
 debug:
 	@make clean
@@ -46,10 +46,16 @@ release-run:
 	$(RELEASE_FOLDER)$(TARGET)
 
 settings-debug:
-	cd SettingCompiler && node SettingsCompiler.js debug
+	cd compilers/SettingsCompiler && node SettingsCompiler.js debug
 
 settings-release:
-	cd SettingCompiler && node SettingsCompiler.js release
+	cd compilers/SettingsCompiler && node SettingsCompiler.js release
+
+sequences-debug:
+	cd compilers/SequencesCompiler && node SequencesCompiler.js debug
+
+sequences-release:
+	cd compilers/SequencesCompiler && node SequencesCompiler.js release
 
 clean:
 	@echo "-- Cleaning Builds --"

@@ -3,13 +3,16 @@
 #include "Note.h"
 #include "DataReader.h"
 #include "NoteBar.h"
+#include "Config.h"
+#include "GlobalSettings.h"
+#include "utils/MusicClip.h"
 
 using Notes = std::vector<Note>;
 
 class Game
 {
 public:
-    Game(const std::string& l_title);
+    Game(GlobalSettings settings, Config config);
     ~Game();
     Window* GetWindow();
 
@@ -35,4 +38,5 @@ private:
     float m_playerYPo;
 
     NoteBar m_bar;
+    MusicClip m_clip;
 };

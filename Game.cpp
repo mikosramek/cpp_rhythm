@@ -6,12 +6,16 @@ int NOTE_SIZE = 50;
 int WINDOW_SIZE_X = 1920;
 int WINDOW_SIZE_Y = 1080;
 
-Game::Game(const std::string& l_title):
-    m_window(l_title, sf::Vector2u(WINDOW_SIZE_X, WINDOW_SIZE_Y)),
-    m_bar(sf::Vector2f(WINDOW_SIZE_X * 0.35, 450), sf::Vector2f(250, WINDOW_SIZE_Y - 600))
+Game::Game(GlobalSettings settings, Config config):
+    m_window(settings.GetValue("title"), sf::Vector2u(WINDOW_SIZE_X, WINDOW_SIZE_Y)),
+    m_bar(sf::Vector2f(WINDOW_SIZE_X * 0.35, 450), sf::Vector2f(250, WINDOW_SIZE_Y - 600)),
+    m_clip("assets/music/castle_bg.ogg")
 {
     m_elapsed = 0.0f;
     m_clock.restart();
+
+    m_clip.SetVolume(config.GetIntValue("volume"));
+    m_clip.Play(true);
 
     if (!m_backgroundTexture.loadFromFile("assets/images/environment/castle.png")) { /* error */ }
     m_backgroundSprite.setTexture(m_backgroundTexture);
@@ -35,9 +39,7 @@ Game::Game(const std::string& l_title):
     }
 }
 
-Game::~Game() {
-
-}
+Game::~Game() { }
 
 Window* Game::GetWindow() {
     return &m_window;
@@ -72,5 +74,5 @@ void Game::Tick() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_notes[i].isInBar(m_bar.GetBounds())) {
             m_notes[i].Reset((float)WINDOW_SIZE_X + NOTE_SIZE);
         }
-     }
+    }
 }

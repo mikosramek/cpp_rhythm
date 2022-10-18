@@ -5,7 +5,7 @@
 int main() {
     Config config;
     GlobalSettings settings;
-    Game game(settings.GetValue("title"));
+    Game game(settings, config);
 
     while (!game.GetWindow()->IsDone()) {
         game.Tick();

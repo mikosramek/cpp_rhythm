@@ -5,6 +5,7 @@ Config::Config():
 {
     // key, default value
     m_map.insert(std::pair<std::string, std::string>("difficulty", "normal"));
+    m_map.insert(std::pair<std::string, std::string>("volume", "0"));
 
     Lines dataLines = m_dataReader.GetLines();
     for (int index = 0; index < dataLines.size(); index += 1) {
@@ -23,3 +24,8 @@ Config::Config():
 Config::~Config() { }
 
 std::string Config::GetValue(std::string key) { return m_map[key]; }
+
+int Config::GetIntValue(std::string key) {
+    std::string stringValue = m_map[key];
+    return std::stoi(stringValue);
+}

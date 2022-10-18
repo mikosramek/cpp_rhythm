@@ -24,7 +24,7 @@ const writeSettings = (data) => {
     })
 
     const finishedFile = template.replace(mapLineRegex, newLines.join('\n'));
-    fs.writeFile(path.resolve(__dirname, '..', 'GlobalSettings.cpp'), finishedFile, (err) => {
+    fs.writeFile(path.resolve(__dirname, '..', '..', 'GlobalSettings.cpp'), finishedFile, (err) => {
         if (err) throw err;
         console.log("Compiled!");
     });
