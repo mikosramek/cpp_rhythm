@@ -3,6 +3,7 @@
         "name": "castle"
     },
     "tempo": 4,
+    "musicFileName": "castle_bg.ogg",
     "notes": [
         {
             "row": 1,

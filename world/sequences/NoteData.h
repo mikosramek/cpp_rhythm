@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-// Duplicate for now
 class NoteData {
 public:
     NoteData(sf::Vector2f startPosition);
