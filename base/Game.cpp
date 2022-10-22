@@ -30,6 +30,7 @@ Game::Game(GlobalSettings settings, Config config):
 
     if (!m_noteTexture.loadFromFile("assets/images/ui/notes.png")) { /* error */ }
 
+    m_sequencer.ChooseLocation(castle);
     m_sequencer.GenerateNextSequence();
 }
 
@@ -46,6 +47,7 @@ void Game::Render() {
     m_window.BeginDraw();
 
     m_window.Draw(m_backgroundSprite);
+    m_sequencer.Render(*m_window.GetRenderWindow());
     m_bar.Render(*m_window.GetRenderWindow());
     m_window.Draw(m_playerSprite);
 
@@ -57,4 +59,5 @@ void Game::Tick() {
 
     int y = sin(m_clock.getElapsedTime().asSeconds() * 2) * 25 + 100;
     m_playerSprite.setPosition(m_playerSprite.getPosition().x, m_playerYPo + y);
+    m_sequencer.Tick();
 }

@@ -2,12 +2,19 @@
 // #include "Location.h"
 #include "Castle.h"
 
+enum LocationName {
+    castle
+};
+
 class Sequencer
 {
 public:
     Sequencer();
     ~Sequencer();
     void GenerateNextSequence();
+    void Render(sf::RenderWindow& l_window);
+    void ChooseLocation(LocationName l_location);
+    void Tick();
 private:
     Castle m_castle;
     Location m_currentLocation;

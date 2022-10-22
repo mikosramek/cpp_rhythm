@@ -1,5 +1,6 @@
 #pragma once
 #include "NoteData.h"
+#include "../utils/Debug.h"
 
 using Notes = std::vector<NoteData>;
 
@@ -11,8 +12,11 @@ public:
     ~Sequence();
     Notes GetNotes();
     std::string GetMusicFileName();
+    void SetSequencePosition(int l_index);
+    void TickNotes();
 private:
     Notes m_notes;
     int m_tempo;
     std::string m_musicFileName;
+    Debug m_debug;
 };
