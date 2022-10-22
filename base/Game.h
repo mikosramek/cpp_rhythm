@@ -6,8 +6,7 @@
 #include "Config.h"
 #include "GlobalSettings.h"
 #include "../utils/MusicClip.h"
-
-using Notes = std::vector<Note>;
+#include "../world/Sequencer.h"
 
 class Game
 {
@@ -23,8 +22,6 @@ public:
 private:
     Window m_window;
 
-    Notes m_notes;
-
 	sf::Clock m_clock;
 	float m_elapsed;
 
@@ -39,4 +36,5 @@ private:
 
     NoteBar m_bar;
     MusicClip m_clip;
+    Sequencer m_sequencer;
 };

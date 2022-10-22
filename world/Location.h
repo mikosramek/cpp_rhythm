@@ -1,5 +1,6 @@
 #pragma once
 #include "Room.h"
+#include <iostream>
 
 using Rooms = std::vector<Room>;
 

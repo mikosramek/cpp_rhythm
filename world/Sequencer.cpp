@@ -2,12 +2,12 @@
 
 Sequencer::Sequencer() {
     m_castle = Castle();
-    // m_currentLocation = m_castle;
+    m_currentLocation = m_castle;
 }
 
 Sequencer::~Sequencer() {
 }
 
 void Sequencer::GenerateNextSequence() {
-    m_castle.GenerateNewRoomOrder();
+    m_currentLocation.GenerateNewRoomOrder();
 }

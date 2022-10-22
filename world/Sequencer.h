@@ -10,7 +10,7 @@ public:
     void GenerateNextSequence();
 private:
     Castle m_castle;
-    // Location m_currentLocation;
+    Location m_currentLocation;
 };
 
 

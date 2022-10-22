@@ -9,7 +9,8 @@ int WINDOW_SIZE_Y = 1080;
 Game::Game(GlobalSettings settings, Config config):
     m_window(settings.GetValue("title"), sf::Vector2u(WINDOW_SIZE_X, WINDOW_SIZE_Y)),
     m_bar(sf::Vector2f(WINDOW_SIZE_X * 0.35, 450), sf::Vector2f(250, WINDOW_SIZE_Y - 600)),
-    m_clip("assets/music/castle_bg.ogg")
+    m_clip("assets/music/castle_bg.ogg"),
+    m_sequencer()
 {
     m_elapsed = 0.0f;
     m_clock.restart();
@@ -28,15 +29,8 @@ Game::Game(GlobalSettings settings, Config config):
     m_playerSprite.setScale(playerScale, playerScale);
 
     if (!m_noteTexture.loadFromFile("assets/images/ui/notes.png")) { /* error */ }
-    for (int i = 0; i < 10; i++) {
-        m_notes.push_back(Note(
-            sf::Vector2f(WINDOW_SIZE_X - NOTE_SIZE + i * 150 - 600, 540 + 108 * (i % 4)),
-            NOTE_SIZE,
-            0.1f,
-            sf::Color::Red,
-            &m_noteTexture
-        ));
-    }
+
+    m_sequencer.GenerateNextSequence();
 }
 
 Game::~Game() { }
@@ -52,12 +46,7 @@ void Game::Render() {
     m_window.BeginDraw();
 
     m_window.Draw(m_backgroundSprite);
-
     m_bar.Render(*m_window.GetRenderWindow());
-
-    for (int i = 0; i < m_notes.size(); i++) {
-        m_notes[i].Render(*m_window.GetRenderWindow());
-    }
     m_window.Draw(m_playerSprite);
 
     m_window.EndDraw();
@@ -68,11 +57,4 @@ void Game::Tick() {
 
     int y = sin(m_clock.getElapsedTime().asSeconds() * 2) * 25 + 100;
     m_playerSprite.setPosition(m_playerSprite.getPosition().x, m_playerYPo + y);
-
-    for (int i = 0; i < m_notes.size(); i++) {
-        m_notes[i].Tick();
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_notes[i].isInBar(m_bar.GetBounds())) {
-            m_notes[i].Reset((float)WINDOW_SIZE_X + NOTE_SIZE);
-        }
-    }
 }

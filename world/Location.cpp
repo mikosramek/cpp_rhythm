@@ -28,4 +28,5 @@ void Location::GenerateNewRoomOrder() {
     m_sequence.push_back(m_entryRooms[0]);
     m_sequence.push_back(m_middleRooms[0]);
     m_sequence.push_back(m_bossRooms[0]);
+    std::cout << "creating new sequence" << std::endl;
 }
