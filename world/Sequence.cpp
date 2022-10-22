@@ -29,13 +29,13 @@ std::string Sequence::GetMusicFileName() {
 }
 
 // TODO: move startingPos and yBaseline into dynamic config %s
+const int startingPos = 1920 * 0.9;
+const int yBaseline = 1080 * 0.9;
 
 void Sequence::SetSequencePosition(int l_index) {
     // first bar is at 600, then we add sequenceOffset (so 2nd starts at 700)
     // this is assuming that each sequence will equal `1` in the % total, ie all `x`s added up won't surpass 1
     // meaning it's not possible to have 2 bar sequences right now
-    int startingPos = 1700;
-    int yBaseline = 1080;
     int barLength = m_tempo * 150; // base off tempo?
     int sequenceOffset = startingPos + l_index * barLength;
     float previousNoteLength = 0;
