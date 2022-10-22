@@ -5,7 +5,7 @@
 #include "NoteBar.h"
 #include "Config.h"
 #include "GlobalSettings.h"
-#include "utils/MusicClip.h"
+#include "../utils/MusicClip.h"
 
 using Notes = std::vector<Note>;
 

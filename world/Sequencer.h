@@ -1,9 +1,6 @@
 #pragma once
-#include "sequences/NoteData.h"
-#include "sequences/CastleNoteSequence.h"
-#include "sequences/Enemy1NoteSequence.h"
-
-using SequenceMap = std::vector<NoteData>;
+// #include "Location.h"
+#include "Castle.h"
 
 class Sequencer
 {
@@ -11,10 +8,9 @@ public:
     Sequencer();
     ~Sequencer();
     void GenerateNextSequence();
-    SequenceMap GetCurrentSequence();
 private:
-    SequenceMap m_possibleSequences;
-    SequenceMap m_sequenceMap;
+    Castle m_castle;
+    // Location m_currentLocation;
 };
 
 

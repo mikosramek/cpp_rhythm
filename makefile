@@ -15,7 +15,13 @@ LIBRARIES = -Iinclude -I/usr/local/include -L/usr/local/lib -lsfml-audio -lsfml-
 
 # -lsfml-graphics -lsfml-window -lsfml-system
 
-CPP_FILES = $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp NoteBar.cpp Config.cpp GlobalSettings.cpp ./utils/MusicClip.cpp
+
+CPP_BASE = $(wildcard *.cpp)
+CPP_UTILS = ./utils/$(wildcard *.cpp)
+CPP_WORLD = ./world/$(wildcard *.cpp)
+CPP_FILES = $(wildcard **/*.cpp)
+
+# $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp NoteBar.cpp Config.cpp GlobalSettings.cpp ./utils/MusicClip.cpp ./world/*.cpp ./world/sequences/$(wildcard *.cpp)
 
 debug:
 	@make clean
@@ -63,6 +69,6 @@ clean:
 	@echo "- Removed Debug"
 	@rm -r -f $(RELEASE_FOLDER)*
 	@echo "- Removed Release"
-	@rm -r -f GlobalSettings.cpp
+	@rm -r -f ./base/GlobalSettings.cpp
 	@echo "- Removed Compiled Settings"
 	@echo "-- Finished Cleaning --"

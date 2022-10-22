@@ -3,7 +3,7 @@
 
 class NoteData {
 public:
-    NoteData(sf::Vector2f startPosition);
+    NoteData(sf::Vector2f l_startPosition);
     NoteData();
     ~NoteData();
 private:
