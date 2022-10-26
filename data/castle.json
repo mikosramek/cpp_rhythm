@@ -1,0 +1,35 @@
+{
+    "meta": {
+        "name": "castle"
+    },
+    "tempo": 4,
+    "sequences": ["background", "wolf"],
+    "entryRooms": [
+        ["background"]
+    ],
+    "middleRooms": [
+        ["background", "wolf"]
+    ],
+    "bossRooms": [
+        ["background", "wolf", "wolf", "wolf"]
+    ],
+    "background": {
+        "musicFileName": "castle_bg.ogg",
+        "notes": [
+            { "row": 1, "length": 0.25 },
+            { "row": 2, "length": 0.25 },
+            { "row": 3, "length": 0.25 },
+            { "row": 4, "length": 0.125 },
+            { "row": 4, "length": 0.125 }
+        ]
+    },
+    "wolf": {
+        "musicFileName": "castle_bg.ogg",
+            "notes": [
+                { "row": 2, "length": 0.25 },
+                { "row": 3, "length": 0.25 },
+                { "row": 2, "length": 0.25 },
+                { "row": 3, "length": 0.25 }
+            ]
+    }
+}

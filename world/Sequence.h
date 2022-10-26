@@ -14,9 +14,11 @@ public:
     std::string GetMusicFileName();
     void SetSequencePosition(int l_index);
     void TickNotes();
+    bool IsNull();
 private:
     Notes m_notes;
     int m_tempo;
     std::string m_musicFileName;
     Debug m_debug;
+    bool m_null;
 };

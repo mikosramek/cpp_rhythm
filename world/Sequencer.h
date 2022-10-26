@@ -1,6 +1,6 @@
 #pragma once
-// #include "Location.h"
-#include "Castle.h"
+#include "Location.h"
+// #include "Castle.h"
 
 enum LocationName {
     castle
@@ -16,7 +16,7 @@ public:
     void ChooseLocation(LocationName l_location);
     void Tick();
 private:
-    Castle m_castle;
+    Location m_castleLocation;
     Location m_currentLocation;
 };
 

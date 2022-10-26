@@ -1,12 +1,12 @@
 #include "Sequencer.h"
 
-Sequencer::Sequencer() {
-    // m_castle = Castle();
-    m_currentLocation = m_castle;
+Sequencer::Sequencer():
+    m_castleLocation("data/castle.json")
+{
+    m_currentLocation = m_castleLocation;
 }
 
-Sequencer::~Sequencer() {
-}
+Sequencer::~Sequencer() {}
 
 void Sequencer::GenerateNextSequence() {
     m_currentLocation.GenerateNewRoomOrder();
@@ -23,7 +23,7 @@ void Sequencer::Render(sf::RenderWindow& l_window) {
 void Sequencer::ChooseLocation(LocationName l_location) {
     switch (l_location) {
         case castle:
-            m_currentLocation = m_castle;
+            m_currentLocation = m_castleLocation;
             break;
         default:
             break;

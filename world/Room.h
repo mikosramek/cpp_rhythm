@@ -6,7 +6,7 @@ using Sequences = std::vector<Sequence>;
 class Room
 {
 public:
-    Room(Sequences l_sequences);
+    Room(Sequences l_sequences, int l_roomLength);
     ~Room();
     void RenderNotes(sf::RenderWindow& l_window);
     void Tick();
@@ -18,4 +18,9 @@ private:
     Sequences m_roomSong;
     Notes m_roomNotes;
     Debug m_debug;
+    int m_roomLength;
+    void GenerateFourSequenceSong();
+    void GenerateThreeSequenceSong();
+    void GenerateTwoSequenceSong();
+    void GenerateOneSequenceSong();
 };

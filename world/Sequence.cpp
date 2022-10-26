@@ -4,15 +4,19 @@ Sequence::Sequence() {
     m_notes = Notes {};
     m_tempo = 4;
     m_musicFileName = "";
+    m_null = true;
 }
 
 Sequence::Sequence(Notes l_notes, int l_tempo, std::string l_musicFileName){
     m_notes = l_notes;
     m_tempo = l_tempo;
     m_musicFileName = l_musicFileName;
+    m_null = false;
 }
 
 Sequence::~Sequence(){ }
+
+bool Sequence::IsNull() { return m_null; }
 
 Notes Sequence::GetNotes() {
     return m_notes;

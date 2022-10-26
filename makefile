@@ -11,17 +11,9 @@ TARGET = main
 RELEASE_FOLDER = ./builds/release/
 DEBUG_FOLDER = ./builds/debug/
 ASSET_FOLDER = assets
+
 LIBRARIES = -Iinclude -I/usr/local/include -L/usr/local/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
-
-# -lsfml-graphics -lsfml-window -lsfml-system
-
-
-CPP_BASE = $(wildcard *.cpp)
-CPP_UTILS = ./utils/$(wildcard *.cpp)
-CPP_WORLD = ./world/$(wildcard *.cpp)
 CPP_FILES = $(wildcard **/*.cpp)
-
-# $(TARGET).cpp Note.cpp Game.cpp Window.cpp DataReader.cpp NoteBar.cpp Config.cpp GlobalSettings.cpp ./utils/MusicClip.cpp ./world/*.cpp ./world/sequences/$(wildcard *.cpp)
 
 debug:
 	@make clean
@@ -56,12 +48,6 @@ settings-debug:
 
 settings-release:
 	cd compilers/SettingsCompiler && node SettingsCompiler.js release
-
-sequences-debug:
-	cd compilers/SequencesCompiler && node SequencesCompiler.js debug
-
-sequences-release:
-	cd compilers/SequencesCompiler && node SequencesCompiler.js release
 
 clean:
 	@echo "-- Cleaning Builds --"
