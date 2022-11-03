@@ -57,6 +57,8 @@ void Sequencer::HandleEvents(sf::Event& event) {
     }
 }
 
+// TODO: figure out how to auto miss notes that are too far gone
+
 void Sequencer::CheckHit() {
     NoteData& nextNote = m_notes[m_noteIndex];
     Result result = m_bar.IsInBar(nextNote.GetPosition());
