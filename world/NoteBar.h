@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include "../utils/Debug.h"
 
 class NoteBar
 {
@@ -14,4 +16,6 @@ public:
 private:
     sf::RectangleShape m_rect;
     sf::Vector2f m_bounds;
+
+    Debug m_debug;
 };

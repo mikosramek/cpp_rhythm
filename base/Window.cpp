@@ -67,7 +67,7 @@ sf::Event& Window::Tick() {
 					ToggleFullscreen();
 					break;
 				default:
-					break;
+					return event;
 			}
 		}
 	}

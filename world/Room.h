@@ -8,15 +8,14 @@ class Room
 public:
     Room(Sequences l_sequences, int l_roomLength);
     ~Room();
-    void RenderNotes(sf::RenderWindow& l_window);
-    void Tick();
+    Notes GetNotes();
 private:
     Sequence m_background;
     Sequence m_positionOne;
     Sequence m_positionTwo;
     Sequence m_positionThree;
     Sequences m_roomSong;
-    Notes m_roomNotes;
+
     Debug m_debug;
     int m_roomLength;
     void GenerateFourSequenceSong();

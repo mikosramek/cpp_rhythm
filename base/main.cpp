@@ -10,5 +10,6 @@ int main() {
     while (!game.GetWindow()->IsDone()) {
         game.Tick();
         game.Render();
+        game.RestartClock();
     }
 }

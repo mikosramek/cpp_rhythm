@@ -34,22 +34,16 @@ Room::Room(Sequences l_sequences, int l_roomLength) {
 
 Room::~Room() { }
 
-void Room::Tick() {
-    for (int i = 0; i < m_roomSong.size(); i++) {
-       m_roomSong[i].TickNotes();
-    }
-}
-
-// room has 4 possible sequences
-void Room::RenderNotes(sf::RenderWindow& l_window) {
-    for (int i = 0; i < m_roomSong.size(); i++) {
-        Notes notes = m_roomSong[i].GetNotes();
-        for (int x = 0; x < notes.size(); x += 1) {
-            notes[x].Render(l_window);
+Notes Room::GetNotes() {
+    Notes notes;
+    for(int i = 0; i < m_roomSong.size(); i += 1) {
+        Notes sequenceNotes = m_roomSong[i].GetNotes();
+        for (int y = 0; y < sequenceNotes.size(); y += 1) {
+            notes.push_back(sequenceNotes[y]);
         }
     }
+    return notes;
 }
-
 
 void Room::GenerateOneSequenceSong() {
     for (int i = 0; i < m_roomLength; i += 1) {
@@ -69,6 +63,7 @@ void Room::GenerateTwoSequenceSong() {
         }
     }
 }
+
 void Room::GenerateThreeSequenceSong() {
     int rand;
     for (int i = 0; i < m_roomLength; i += 1) {
@@ -85,6 +80,7 @@ void Room::GenerateThreeSequenceSong() {
         }
     }
 }
+
 void Room::GenerateFourSequenceSong() {
     int rand;
     for (int i = 0; i < m_roomLength; i += 1) {

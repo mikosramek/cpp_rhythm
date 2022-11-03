@@ -11,6 +11,8 @@ public:
     void Tick();
     sf::Vector2f GetPosition();
     void SetPosition(sf::Vector2f l_pos);
+    void Destroy();
+    bool IsInBar(sf::Vector2f barBounds);
 private:
     sf::Vector2f m_position;
     sf::CircleShape m_shape;

@@ -2,10 +2,10 @@
 #include "Window.h"
 #include "Note.h"
 #include "DataReader.h"
-#include "NoteBar.h"
 #include "Config.h"
 #include "GlobalSettings.h"
 #include "../utils/MusicClip.h"
+#include "../utils/Debug.h"
 #include "../world/Sequencer.h"
 
 class Game
@@ -15,15 +15,16 @@ public:
     ~Game();
     Window* GetWindow();
 
+    void CheckInput();
     void Render();
     void Tick();
-    float GetElapsed();
 	void RestartClock();
+    sf::Time GetElapsed();
 private:
     Window m_window;
 
 	sf::Clock m_clock;
-	float m_elapsed;
+	sf::Time m_elapsed;
 
 	sf::Texture m_backgroundTexture;
 	sf::Sprite m_backgroundSprite;
@@ -37,4 +38,6 @@ private:
     NoteBar m_bar;
     MusicClip m_clip;
     Sequencer m_sequencer;
+
+    Debug m_debug;
 };

@@ -22,12 +22,6 @@ Notes Sequence::GetNotes() {
     return m_notes;
 }
 
-void Sequence::TickNotes() {
-    for (int x = 0; x < m_notes.size(); x += 1) {
-        m_notes[x].Tick();
-    }
-}
-
 std::string Sequence::GetMusicFileName() {
     return m_musicFileName;
 }

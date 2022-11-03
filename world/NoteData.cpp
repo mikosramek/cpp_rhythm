@@ -11,7 +11,7 @@ NoteData::NoteData(sf::Vector2f l_startPosition) {
     m_shape.setPosition(m_position);
     m_shape.setFillColor(sf::Color::Red);
 
-    m_speed = 0.1; // TODO: base speed on sequence tempo
+    m_speed = 5; // TODO: base speed on sequence tempo
 }
 
 NoteData::NoteData() {
@@ -29,6 +29,7 @@ void NoteData::Render(sf::RenderWindow& l_window) {
 }
 
 void NoteData::Tick() {
+    if (!m_isVisible) return;
     m_position.x -= m_speed;
     m_shape.setPosition(m_position);
 }
@@ -40,4 +41,12 @@ sf::Vector2f NoteData::GetPosition() {
 void NoteData::SetPosition(sf::Vector2f l_pos) {
     m_position = l_pos;
     m_shape.setPosition(m_position);
+}
+
+void NoteData::Destroy() {
+    m_isVisible = false;
+}
+
+bool NoteData::IsInBar(sf::Vector2f barBounds) {
+    return m_position.x > barBounds.x && m_position.x < barBounds.y;
 }

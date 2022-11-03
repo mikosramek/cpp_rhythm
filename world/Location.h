@@ -13,14 +13,13 @@ public:
     Location(std::string configFilePath);
     ~Location();
     void GenerateNewRoomOrder();
-    void Render(sf::RenderWindow& l_window);
-    void Tick();
+    Notes GetNextRoomsNotes(int l_roomIndex);
 protected:
     Rooms m_middleRooms;
     Rooms m_entryRooms;
     Rooms m_bossRooms;
 
-    Rooms m_sequence;
+    Rooms m_rooms;
     int m_roomIndex;
     JSONLoader loader;
     std::map<std::string, json> m_map;

@@ -8,11 +8,10 @@ int WINDOW_SIZE_Y = 1080;
 
 Game::Game(GlobalSettings settings, Config config):
     m_window(settings.GetValue("title"), sf::Vector2u(WINDOW_SIZE_X, WINDOW_SIZE_Y)),
-    m_bar(sf::Vector2f(WINDOW_SIZE_X * 0.35, 450), sf::Vector2f(250, WINDOW_SIZE_Y - 600)),
     m_clip("assets/music/castle_bg.ogg"),
-    m_sequencer()
+    m_sequencer(*m_window.GetRenderWindow())
 {
-    m_elapsed = 0.0f;
+    m_elapsed = m_clock.getElapsedTime();
     m_clock.restart();
 
     m_clip.SetVolume(config.GetIntValue("volume"));
@@ -40,15 +39,15 @@ Window* Game::GetWindow() {
     return &m_window;
 }
 
-float Game::GetElapsed() { return m_elapsed; }
-void Game::RestartClock() { m_elapsed += m_clock.restart().asSeconds(); }
+sf::Time Game::GetElapsed() { return m_elapsed; }
+void Game::RestartClock() { m_elapsed += m_clock.restart(); }
+
 
 void Game::Render() {
     m_window.BeginDraw();
 
     m_window.Draw(m_backgroundSprite);
     m_sequencer.Render(*m_window.GetRenderWindow());
-    m_bar.Render(*m_window.GetRenderWindow());
     m_window.Draw(m_playerSprite);
 
     m_window.EndDraw();
@@ -56,8 +55,14 @@ void Game::Render() {
 
 void Game::Tick() {
     sf::Event event = m_window.Tick();
+    m_sequencer.HandleEvents(event);
 
-    int y = sin(m_clock.getElapsedTime().asSeconds() * 2) * 25 + 100;
-    m_playerSprite.setPosition(m_playerSprite.getPosition().x, m_playerYPo + y);
-    m_sequencer.Tick();
+    float timestep = 1.0f / 60.0f;
+    if (m_elapsed.asSeconds() >= timestep) {
+        m_elapsed -= sf::seconds(timestep);
+        
+        int y = sin(m_clock.getElapsedTime().asSeconds() * 2) * 25 + 100;
+        m_playerSprite.setPosition(m_playerSprite.getPosition().x, m_playerYPo + y);
+        m_sequencer.Tick();
+    }
 }

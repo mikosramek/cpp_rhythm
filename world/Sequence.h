@@ -13,7 +13,6 @@ public:
     Notes GetNotes();
     std::string GetMusicFileName();
     void SetSequencePosition(int l_index);
-    void TickNotes();
     bool IsNull();
 private:
     Notes m_notes;
