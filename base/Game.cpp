@@ -54,6 +54,7 @@ void Game::Render() {
 }
 
 void Game::Tick() {
+    // TODO: this way of handling events seems unreliable - replace with something better
     sf::Event event = m_window.Tick();
     m_sequencer.HandleEvents(event);
 

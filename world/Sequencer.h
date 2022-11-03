@@ -18,7 +18,6 @@ public:
     void Render(sf::RenderWindow& l_window);
     void ChooseLocation(LocationName l_location);
     void Tick();
-    void CheckInput();
     void HandleEvents(sf::Event& event);
 private:
     Location m_castleLocation;
@@ -28,15 +27,13 @@ private:
     int m_noteIndex;
 
     void CheckHit();
-    void HitNote();
+    void HitNote(Result l_result);
     void MissedNote();
     
     Notes m_notes;
     NoteBar m_bar;
 
     Debug m_debug;
-
-    bool m_spacePressed;
 };
 
 

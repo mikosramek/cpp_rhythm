@@ -1,13 +1,13 @@
 #include "Sequencer.h"
 
 Sequencer::Sequencer():
-    m_bar(sf::Vector2f(0, 0), sf::Vector2f(0, 0))
+    m_bar(sf::Vector2f(0, 0))
 {
     InitLocations();
 }
 
 Sequencer::Sequencer(sf::RenderWindow& l_window):
-    m_bar(sf::Vector2f(l_window.getSize().x *  0.5, 450), sf::Vector2f(25, l_window.getSize().y - 600))
+    m_bar(sf::Vector2f(l_window.getSize().x *  0.3, 450))
 {
     InitLocations();
 }
@@ -49,21 +49,6 @@ void Sequencer::Render(sf::RenderWindow& l_window) {
     m_bar.Render(l_window);
 }
 
-void Sequencer::CheckInput() {
-    // if (!m_spacePressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-    //     NoteData nextNext = m_notes[m_noteIndex];
-    //     nextNext.Destroy();
-    //     if (nextNext.IsInBar(m_bar.GetBounds())) {
-    //         // score
-    //         m_debug.Log("Scored!");
-    //     } else {
-    //         // missed
-    //         m_debug.Log("Missed!");
-    //     }
-    //     m_noteIndex += 1;
-    // }
-}
-
 void Sequencer::HandleEvents(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Space) {
@@ -73,19 +58,19 @@ void Sequencer::HandleEvents(sf::Event& event) {
 }
 
 void Sequencer::CheckHit() {
-    m_debug.Log("Space Pressed");
     NoteData& nextNote = m_notes[m_noteIndex];
-    if (nextNote.IsInBar(m_bar.GetBounds())) {
-        HitNote();
-    } else {
+    Result result = m_bar.IsInBar(nextNote.GetPosition());
+    if (result == Result::miss) {
         MissedNote();
-    }
+    } else {
+        HitNote(result);
+    } 
     nextNote.Destroy();
     m_noteIndex += 1;
 }
 
-void Sequencer::HitNote() {
-    m_debug.Log("Scored!");
+void Sequencer::HitNote(Result l_result) {
+    m_debug.Log(l_result == 2 ? "Perfect" : "Okay");
 }
 
 void Sequencer::MissedNote() {
